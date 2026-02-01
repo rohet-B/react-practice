@@ -8,10 +8,10 @@
 ## Creating React Project
 - React project can be made in 2 ways:
     1. `npx create-react-app project_name`
-    - creating react project using webpack (installing without using third party tools like vite).
-    - this command installs a bulky utility for react that's why takes time to install.
-    - To run projects go and see package.json > scripts `npm run start`
+        - creating react project using webpack (installing without using third party tools like vite).
+        - this command installs a bulky utility for react that's why takes time to install.
+        - To run projects go and see package.json > scripts `npm run start`
     2. `npm create vite@latest` 
-    - creating react project using a vite bundeler.
-    - To run projects go and see package.json > scripts
+        - creating react project using a vite bundeler.
+        - To run projects go and see package.json > scripts
 
