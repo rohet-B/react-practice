@@ -2,6 +2,8 @@ import Array from "./components/01_useState/Array"
 import UseEffectDemo from "./components/02_useEffect/UseEffectDemo"
 import UseEffectDemo2 from "./components/03_useRef/UseEffectDemo2"
 import UseEffectDemo_1 from "./components/03_useRef/UseEffectDemo_1"
+import With_Context_Parent from "./components/04_useContext/With_Context/With_Context_Parent"
+import Parent from "./components/04_useContext/Without_Context/Parent"
 
 function App() {
 
@@ -57,6 +59,42 @@ function App() {
 
     <hr/>
 
+ <div className="p-4">
+      <h2 className="text-3xl font-bold">useContext</h2>
+
+      <ul className="list-disc pl-5">
+        <li>
+          It lets you share data between components without passing props manually at every level.
+        </li>
+        <li>
+          Normally, if you have a value (like a user's name or a theme) in a parent component, and you need it in a deeply nested child, you'd have to pass it down through props drilling which is messy. That's why React gives us createContext + useContext.
+        </li>
+        <li>
+          It is basically used for theme switching (dark/light mode), Authentication / user login or not. 
+        </li>
+        <li>
+          Steps to work with useContext: 
+        </li>
+        <li>
+          Step 1. Creating the context
+          - createContext method is used, <span className="font-bold">const userContext=createContext()</span>
+        </li>
+        <li>Step 2. Providing the context
+          - Provider method is used & remember that it is used inside return() method, <span className="font-bold">return (&lt;userContext.Provider value="xyz"&gt;&lt;Child/&gt;&lt;/userContext.Provider&gt;);</span>
+        </li>
+        <li>Step 3. Consuming or using the Context inside child Component
+          - useContext method is used & if context file is made in context folder we have to import that context file also, <span className="font-bold">const user = useContext(userContext)</span>
+        </li>
+      </ul>
+
+      <h3 className="font-bold mt-2">Example 1. Props drilling or (Without_context):</h3>
+      <Parent/>
+      <h3 className="font-bold mt-2">Example 2. With context:</h3>
+      <With_Context_Parent/>
+    </div>
+
+    <hr/>
+    
     
     </>
   )
