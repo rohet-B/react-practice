@@ -4,6 +4,11 @@ import UseEffectDemo2 from "./components/03_useRef/UseEffectDemo2"
 import UseEffectDemo_1 from "./components/03_useRef/UseEffectDemo_1"
 import With_Context_Parent from "./components/04_useContext/With_Context/With_Context_Parent"
 import Parent from "./components/04_useContext/Without_Context/Parent"
+import With_useMemo from "./components/05_useMemo/With_useMemo"
+import Without_useMemo from "./components/05_useMemo/Without_useMemo"
+import With_useCallback_Parent from "./components/06_useCallback/With_useCallback/With_useCallback_Parent"
+import Without_useCallback_Parent from "./components/06_useCallback/Without_useCallback/Without_useCallbackParent"
+import UseId from "./components/07_useId/UseId"
 
 function App() {
 
@@ -95,7 +100,51 @@ function App() {
 
     <hr/>
     
-    
+      <div className="p-4">
+      <h2 className="text-3xl font-bold">useMemo</h2>
+
+      <ul className="list-disc pl-5">
+        <li>useMemo prevents an expensive calculation value or result of a function from being recomputed on every re-render.</li>
+        <li>Thus, it memorizes the result of a computation and recomputes it only when its dependencies change.</li>
+      </ul>
+
+      <h3 className="font-bold mt-2">Example: Without useMemo</h3>
+      <Without_useMemo/>
+      <h3 className="font-bold mt-2">Example 2: With useMemo</h3>
+      <With_useMemo/>
+    </div>
+
+    <hr/>
+
+    <div className="p-4">
+      <h2 className="text-3xl font-bold">useCallback</h2>
+
+      <ul className="list-disc pl-5">
+       <li>useCallback prevents a function from being recreated on every re-render to imporve performance optimization.</li>
+       <li>Thus, it memorizes a function.</li>
+      </ul>
+
+      <h3 className="font-bold mt-2">Example: Without useCallback</h3>
+        <Without_useCallback_Parent/>
+      <h3 className="font-bold mt-2">Example: With useCallback</h3>
+        <With_useCallback_Parent/>
+    </div>
+
+    <hr />
+
+    <div className="p-4">
+      <h2 className="text-3xl font-bold">useId</h2>
+
+      <ul className="list-disc pl-5">
+       <li>In React, useId() is used to generate a unique ID for form elements like inputs.</li>
+       <li>You assign this ID to the input's id attribute and set the corresponding label's "htmlFor" to the same ID.</li>
+        <li>This links the label to the input, so clicking the label focuses the input and improves accessibility, especially for screen readers.</li>
+      </ul>
+
+      <h3 className="font-bold mt-2">Example:</h3>
+        <UseId/>
+    </div>
+
     </>
   )
 }
