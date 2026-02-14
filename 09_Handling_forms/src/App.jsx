@@ -70,7 +70,7 @@ function App() {
       <h2 className='text-2xl font-bold'>Form Handling</h2>
       <h3 className='text-xl font-semibold mt-3'>Using FormData Method (Without React hook)</h3>
       <p>FormData method is used in JavaScript to collect and send form data (like input values, files, etc.) to a server without reloading the page.</p>
-      <div className='flex w-full justify-center mt-[23px] items-center'>
+      <div className='flex w-full justify-center mt-5.75 items-center'>
         <form onSubmit={handleSubmit1}>
           <label >Username: </label>
           <input className='bg-slate-600 rounded-2xl' type="text" name='username' /><br /><br />
@@ -90,7 +90,7 @@ function App() {
       <h3 className='text-xl font-semibold mt-3'>Using React Hook Form</h3>
       <p>React Hook Form is a library that helps you build forms easily in React with less code and better performance.</p>
       <p>React Hook Form manages form state, handles validation, collects form data automatically and manages error messages efficiently.</p>
-      <div className='flex w-full justify-center mt-[23px] items-center'>
+      <div className='flex w-full justify-center mt-5.75 items-center'>
 
         {/* handleSubmit is given by useForm(), not your own. */}
         <form onSubmit={handleSubmit(onSubmitform2)}>
