@@ -34,7 +34,7 @@ function App() {
       register,
       handleSubmit,
       setError,
-      formState:{errors},
+      formState:{errors,isSubmitting},
     } = useForm()
 
 
@@ -102,7 +102,9 @@ function App() {
           <label>Password: </label>
           <input className='bg-slate-600 rounded-2xl' type="password" name="password" {...register("password",{minLength:{value:7,message:"Min length of pass is 7."}})} /><br />
           {errors.password && <div className="text-red-600">{errors.password.message}</div>}
-          <button className='submit cursor-pointer bg-slate-500 p-1.5 mt-5'>SUBMIT</button>
+          <button className='submit cursor-pointer bg-slate-500 p-1.5 mt-5' disabled={isSubmitting}>SUBMIT</button>
+          {/* isSubmitting disables the button while the form is submitting to prevent multiple submissions. */}
+          {isSubmitting && <div>Loading...</div>}
 
 
            {/* Custom Error throwing */}
