@@ -2,6 +2,8 @@ import express from 'express';
 const app = express();
 const port = 3000;
 
+app.use(express.json());
+
 app.get('/',(req,res)=>{
     res.send("Server is ready.");
 });
@@ -38,6 +40,16 @@ app.get("/api/jokes",(req,res)=>{
     ]
     res.send(jokes);
 })
+
+// Getting data from frontend
+app.post("/api/jokes",(req,res)=>{
+    const data = req.body; 
+    console.log(data);
+
+    res.send({
+        message:"Data Received Successfully.",
+    })
+});
 
 app.listen(port,()=>{
     console.log(`Server is running at ${port}.`);
