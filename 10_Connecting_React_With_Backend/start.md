@@ -381,4 +381,84 @@
     export default App
 
     ```
-THE END : )
+
+## Conclusion
+### Sending Data Using Proxy or CORS
+- In this article we saw how to connect backend & frontend using proxy & axios.
+
+- `Axios` is an external JavaScript library used to send & recieve HTTP requests & responses, which needs to be installed separately. When data is send in JSON format, Axios automatically converts that JSON response into a usable JavaScript object, has better error handling and provides a cleaner syntax, which is why it is commonly used in React applications.
+- On the other hand, `Fetch` is a built-in browser API (provided by the browser) that is used to send HTTP requests and receive responses from a server. It does not require any installation and works directly in the browser, but it returns the response in raw format, so the data must be manually converted into JSON using `response.json()`. Fetch also requires extra handling for errors, which makes the code slightly longer compared to Axios.
+
+- Another way to connect frontend and backend is using `CORS`. 
+- When we use a proxy, the frontend sends data to a standardized API path like `/api/....` The proxy then forwards this request to the backend server, making the browser think the request came from the same origin, so no CORS check is triggered.
+- But When we use CORS, the frontend talks directly to the backend using the full backend URL like `http://localhost:3000/api/...`. The backend then sends special permission headers to the browser. These headers tell the browser, “It’s okay, this request is allowed.” After that, the browser lets the request and response go through successfully. 
+See the Example:
+    ```js
+    //Server.js file
+    import express from "express";
+    import cors from "cors";
+    import bodyParser from "body-parser";
+
+    const app = express();
+    const port = 3000;
+
+    app.use(cors());
+    app.use(bodyParser.json()); //It tells server Hey, any incoming request with a JSON body, please parse it and convert it into a JavaScript object, so I can access it via req.body.
+
+    app.get("/",(req,res)=>{
+        res.send("Hello World");
+    });
+    app.post("/",(req,res)=>{
+        console.log(req.body);
+        res.send("Data Send.");
+    });
+
+    app.listen(port,() =>{
+        console.log(`App is listening to port ${port}`);
+    })
+    ```
+    ```js
+    // App.jsx
+    import { useState } from "react";
+    import axios from "axios";
+
+    function App() {
+    const [name, setName] = useState("");
+
+    const sendName = () => {
+        axios.post("http://localhost:3000/", {
+        name: name
+        })
+        .then((response) => {
+        console.log(response.data);
+        alert("Name sent successfully");
+        })
+        .catch((error) => {
+        console.log(error);
+        });
+    };
+
+    return (
+        <div style={{ padding: "20px" }}>
+        <h2>Send Name to Backend</h2>
+
+        <input
+            type="text"
+            placeholder="Enter your name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+        />
+
+        <br /><br />
+
+        <button onClick={sendName}>Send</button>
+        </div>
+    );
+    }
+
+    export default App;
+    ```
+
+`In Short:` The connection between the frontend and backend depends on whether you are using proxy or CORS, because both proxy and CORS decide whether the browser will allow the request or block it. However, in both cases, you can use `Axios` or `Fetch` to send and receive HTTP requests. Axios and Fetch are not used to create the connection, they are used to send requests and handle responses. When the backend sends data in JSON format, `Axios` automatically converts JSON into a JavaScript object, while Fetch requires manual conversion using `response.json()`.
+
+*`THE END : )`*
